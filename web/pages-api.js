@@ -4,8 +4,8 @@ const layers={major:'04Hydro_MajorStream/FeatureServer/0',minor:'04Hydro_MinorSt
 let stationsPromise,dbPromise;
 const openDb=()=>dbPromise??=new Promise((resolve,reject)=>{const req=indexedDB.open('station-class-master',1);req.onupgradeneeded=()=>{const db=req.result;db.createObjectStore('master',{keyPath:'id'});db.createObjectStore('photos',{keyPath:'id'});};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
 async function store(name,mode,run){const db=await openDb();return new Promise((resolve,reject)=>{const tx=db.transaction(name,mode),result=run(tx.objectStore(name));tx.oncomplete=()=>resolve(result);tx.onerror=()=>reject(tx.error);});}
-const all=async name=>store(name,'readonly',s=>s.getAll());
-const one=async(name,id)=>store(name,'readonly',s=>s.get(id));
+const all=async name=>{const db=await openDb();return new Promise((resolve,reject)=>{const req=db.transaction(name,'readonly').objectStore(name).getAll();req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});};
+const one=async(name,id)=>{const db=await openDb();return new Promise((resolve,reject)=>{const req=db.transaction(name,'readonly').objectStore(name).get(id);req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});};
 const put=async(name,value)=>store(name,'readwrite',s=>s.put(value));
 const remove=async(name,id)=>store(name,'readwrite',s=>s.delete(id));
 const read=async(url,signal)=>{const response=await fetch(url,{signal});if(!response.ok)throw Error('บริการชั้นข้อมูลตอบกลับ '+response.status);const data=await response.json();if(data.error)throw Error(data.error.message||'โหลดชั้นข้อมูลไม่สำเร็จ');return data;};

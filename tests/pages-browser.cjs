@@ -9,6 +9,11 @@ const http=require('node:http'), fs=require('node:fs/promises'), path=require('n
  const base=process.env.PAGES_URL||`http://127.0.0.1:${server.address().port}/station-class-decision/`;
  await page.goto(base);await page.waitForFunction(()=>window.stationMap?.markers().size===85);
  assert.equal(await page.locator('#station-table tr').count(),85);
+ assert(await page.locator('[data-layer="district"]').isChecked());
+ assert.equal(await page.locator('.leaflet-control-zoom-in').getAttribute('title'),'ขยายแผนที่');
+ assert.equal(await page.locator('.leaflet-control-zoom-out').getAttribute('title'),'ย่อแผนที่');
+ await page.waitForFunction(()=>document.querySelectorAll('.province-label').length===20,{},{timeout:60000});
+ await page.waitForFunction(()=>document.querySelector('#state-district').textContent.includes('รายการ'),{},{timeout:60000});
  await page.waitForFunction(()=>document.querySelector('#map-storage-status').textContent.includes('เว็บส่วนกลาง'));
  await page.selectOption('#map-province','เชียงราย');await page.waitForFunction(()=>window.stationMap.markers().size===5);
  await page.selectOption('#map-class','A');assert.equal(await page.locator('.station-marker').count(),1);
@@ -24,6 +29,6 @@ const http=require('node:http'), fs=require('node:fs/promises'), path=require('n
  assert(apiResults.district>0);assert(apiResults.subdistrict>0);
  await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  await page.goto(base+'master.html?station=40');assert.equal(await page.locator('#central').getAttribute('href'),'https://station-class-decision.chayanrot-ja.chatgpt.site/master.html?station=40');
- assert.deepEqual(errors,[]);console.log(JSON.stringify({passed:true,base,markers:85,mask:77,apiResults,centralLinks:true,coordinateAccuracy:true,mobile:true,errors}));
+ assert.deepEqual(errors,[]);console.log(JSON.stringify({passed:true,base,markers:85,provinceLabels:20,districtDefault:true,zoomControls:true,mask:77,apiResults,centralLinks:true,coordinateAccuracy:true,mobile:true,errors}));
  }finally{await browser.close();await new Promise(r=>server.close(r));}
 })().catch(e=>{console.error(e);process.exitCode=1;});

@@ -8,7 +8,7 @@ const data = JSON.parse(await fs.readFile(root+'/stations.json','utf8'));
 assert.equal(data.stations.length,85);
 assert.equal(data.stations.filter(s=>s.class==='A').length,20);
 const common = await fs.readFile(root+'/common.js','utf8');
-assert(common.includes("export {api} from './pages-api.js'"));
+assert(common.includes("export {api} from './pages-api.js?v=20260924'"));
 assert(!common.includes('fetch(path'));
 const html = await fs.readFile(root+'/index.html','utf8');
 assert(html.includes('href="master.html"'));

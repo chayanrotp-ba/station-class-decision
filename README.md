@@ -1,5 +1,13 @@
 # การจัดลำดับสถานีตรวจวัด 85 จุด
 
+## เว็บสาธารณะ GitHub Pages
+
+เปิดรายงานและแผนที่ได้ที่ https://chayanrotp-ba.github.io/station-class-decision/ โดยไม่ต้องติดตั้งโปรแกรม เป็นข้อมูลต้นฉบับจาก Excel/PDF ส่วนการแก้ไข Master และรูปภาพให้เปิด https://station-class-decision.chayanrot-ja.chatgpt.site/master.html ด้วยสิทธิ์เข้าใช้งานเดิม ข้อมูลส่วนกลางและรูปภาพไม่ซิงก์มาที่ Pages
+
+Workflow `.github/workflows/pages.yml` build และเผยแพร่เมื่อ push เข้า `master` ใช้ `npm ci`, `npm run build`, `node build-pages.mjs`, `node tests/pages.mjs` ผลลัพธ์ `.pages-dist/` คัดลอกเฉพาะไฟล์หน้าเว็บและเอกสารสาธารณะ ไม่รวม Worker, D1/R2 หรือข้อมูลภายในเครื่อง ชั้น GIS เรียกบริการ ปภ. โดยตรงจากเบราว์เซอร์ หากบริการไม่พร้อมจะแสดงสถานะโหลดไม่สำเร็จ
+
+ทดสอบหน้า Pages ด้วย `node tests/pages-browser.cjs` (Edge และ Playwright ตาม path ในไฟล์ทดสอบ) ครอบคลุม URL ใต้ชื่อ repo, แผนที่, พิกัด, ตัวกรอง, ภาพดาวเทียม, GIS, ลิงก์ Master และจอมือถือ
+
 เว็บปัจจุบันมีรายงาน แผนที่ ArcGIS World Imagery และเมนู Master สำหรับชื่อ หมายเหตุ และรูปภาพหลายรูปต่อจุด ข้อมูลแก้ไขเก็บใน D1 และไฟล์รูปเก็บใน R2 ของ Sites รูปต้องอัปโหลดผ่านเว็บที่เผยแพร่ ไม่เก็บรูปไว้ใน localStorage
 
 ไฟล์ `dist/index.html` และ ZIP จากรอบแรกเป็นรายงานออฟไลน์เดิมเท่านั้น รุ่นปัจจุบันอยู่ที่ `dist/client/index.html` และ `dist/client/master.html` พร้อม Worker `dist/server/index.js` และต้องเปิดผ่านเซิร์ฟเวอร์เพื่อใช้ Master/รูปภาพ

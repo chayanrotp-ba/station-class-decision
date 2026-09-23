@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "scenarios": [
+    29,
+    37,
+    55,
+    71
+  ],
+  "classes": [
+    20,
+    51,
+    14
+  ],
+  "stationCount": 85,
+  "cards": 14,
+  "sourcePages": 6,
+  "errors": []
+}

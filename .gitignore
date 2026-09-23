@@ -1,0 +1,7 @@
+analysis/pdf-render/
+analysis/*screenshot*.png
+analysis/qa-*.png
+.sites-runtime/
+*.zip
+*.tar.gz
+node_modules/

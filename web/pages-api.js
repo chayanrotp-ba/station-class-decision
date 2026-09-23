@@ -1,42 +1,22 @@
-// GitHub Pages is read-only. No credentials or private station overrides are published.
-const source = 'https://gis-portal.disaster.go.th/arcgis/rest/services/';
-const layers = {major:'04Hydro_MajorStream/FeatureServer/0',minor:'04Hydro_MinorStream/FeatureServer/0',province:'Map116/DPM_TH_Province_DSS/FeatureServer/1',district:'Map116/DPM_TH_Amphoe_DSS/FeatureServer/1',subdistrict:'Map116/DPM_TH_Tambon_DSS/FeatureServer/1',mask:'Hosted/Province_Gray/FeatureServer/0'};
-let stations;
-async function read(url, signal) {
-  const response = await fetch(url, {signal});
-  if (!response.ok) throw Error('บริการชั้นข้อมูลตอบกลับ ' + response.status);
-  const data = await response.json();
-  if (data.error) throw Error(data.error.message || 'โหลดชั้นข้อมูลไม่สำเร็จ');
-  return data;
-}
-export async function api(path, options = {}) {
-  if (options.method && options.method !== 'GET') throw Error('กรุณาเปิดเว็บส่วนกลางเพื่อแก้ไขข้อมูล');
-  if (path.startsWith('/api/stations')) {
-    stations ??= read(new URL('stations.json', import.meta.url)).then(data => data.stations.map(s => ({...s,displayName:s.masterName||s.name,notes:'',photoCount:null,photos:[]})));
-    const data = await stations;
-    if (path === '/api/stations') return {stations:data,storage:'public-source'};
-    const station = data.find(s => s.id === Number(path.split('/').pop()));
-    if (!station) throw Error('ไม่พบจุดติดตั้ง');
-    return station;
-  }
-  const url = new URL(path, location.origin), key = url.pathname.split('/').pop();
-  if (!layers[key]) throw Error('ไม่พบชั้นข้อมูล');
-  const params = url.searchParams, province = params.get('province'), offset = Number(params.get('offset')||0);
-  const q = new URLSearchParams({f:'geojson',where:'1=1',outFields:'*',outSR:'4326',returnGeometry:'true',resultRecordCount:'1000',resultOffset:String(offset),maxAllowableOffset:params.get('tolerance')||'0.001'});
-  if (province && province !== 'all' && ['province','district','subdistrict'].includes(key)) q.set('where', `PROV_NAM_T='${province.replaceAll("'","''")}'`);
-  if (params.has('bbox')) {
-    const [xmin,ymin,xmax,ymax] = params.get('bbox').split(',').map(Number);
-    q.set('geometry',JSON.stringify({xmin,ymin,xmax,ymax,spatialReference:{wkid:4326}}));
-    q.set('geometryType','esriGeometryEnvelope');q.set('inSR','4326');q.set('spatialRel','esriSpatialRelIntersects');
-  }
-  const data = await read(source + layers[key] + '/query?' + q, options.signal);
-  if (!Array.isArray(data.features)) throw Error('รูปแบบชั้นข้อมูลไม่ถูกต้อง');
-  const count = data.features.length;
-  if (key === 'province' && offset === 0 && (!province || province === 'all' || province === 'สตูล') && !data.features.some(f=>f.properties?.PROV_NAM_T==='สตูล')) {
-    const sq = new URLSearchParams({f:'geojson',where:"PROV_NAM_T='สตูล'",outFields:'PROV_NAM_T',outSR:'4326',returnGeometry:'true',maxAllowableOffset:q.get('maxAllowableOffset')});
-    const satun = await read(source + layers.district + '/query?' + sq, options.signal);
-    if (!satun.features?.length) throw Error('ไม่มีข้อมูลขอบเขตสตูล');
-    data.features.push({type:'Feature',properties:{PROV_NAM_T:'สตูล',fallback:true,boundary_source:'ขอบเขตอำเภอ ปภ. '+satun.features.length+' แห่ง'},geometry:{type:'MultiPolygon',coordinates:satun.features.flatMap(f=>f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.type==='MultiPolygon'?f.geometry.coordinates:[])}});
-  }
-  return {...data,nextOffset:(data.exceededTransferLimit||data.properties?.exceededTransferLimit)?offset+count:null};
+// Public Pages master: data and photos stay in this browser profile, with no sign-in.
+const source='https://gis-portal.disaster.go.th/arcgis/rest/services/';
+const layers={major:'04Hydro_MajorStream/FeatureServer/0',minor:'04Hydro_MinorStream/FeatureServer/0',province:'Map116/DPM_TH_Province_DSS/FeatureServer/1',district:'Map116/DPM_TH_Amphoe_DSS/FeatureServer/1',subdistrict:'Map116/DPM_TH_Tambon_DSS/FeatureServer/1',mask:'Hosted/Province_Gray/FeatureServer/0'};
+let stationsPromise,dbPromise;
+const openDb=()=>dbPromise??=new Promise((resolve,reject)=>{const req=indexedDB.open('station-class-master',1);req.onupgradeneeded=()=>{const db=req.result;db.createObjectStore('master',{keyPath:'id'});db.createObjectStore('photos',{keyPath:'id'});};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+async function store(name,mode,run){const db=await openDb();return new Promise((resolve,reject)=>{const tx=db.transaction(name,mode),result=run(tx.objectStore(name));tx.oncomplete=()=>resolve(result);tx.onerror=()=>reject(tx.error);});}
+const all=async name=>store(name,'readonly',s=>s.getAll());
+const one=async(name,id)=>store(name,'readonly',s=>s.get(id));
+const put=async(name,value)=>store(name,'readwrite',s=>s.put(value));
+const remove=async(name,id)=>store(name,'readwrite',s=>s.delete(id));
+const read=async(url,signal)=>{const response=await fetch(url,{signal});if(!response.ok)throw Error('บริการชั้นข้อมูลตอบกลับ '+response.status);const data=await response.json();if(data.error)throw Error(data.error.message||'โหลดชั้นข้อมูลไม่สำเร็จ');return data;};
+async function currentStations(){const base=await(stationsPromise??=read(new URL('stations.json',import.meta.url)));const [masters,photos]=await Promise.all([all('master'),all('photos')]);const masterById=new Map(masters.map(v=>[v.id,v])),photosById=new Map();for(const photo of photos){const list=photosById.get(photo.stationId)||[];list.push({...photo,url:URL.createObjectURL(photo.blob)});photosById.set(photo.stationId,list);}return base.stations.map(s=>{const saved=masterById.get(s.id),list=photosById.get(s.id)||[];return {...s,displayName:saved?.displayName||s.masterName||s.name,notes:saved?.notes||'',updatedAt:saved?.updatedAt,revision:saved?.revision||0,photos:list,photoCount:list.length};});}
+async function station(id){const value=(await currentStations()).find(s=>s.id===id);if(!value)throw Error('ไม่พบจุดติดตั้ง');return value;}
+const jsonBody=async options=>{try{return JSON.parse(options.body||'{}');}catch{throw Error('รูปแบบข้อมูลไม่ถูกต้อง');}};
+export async function api(path,options={}){const method=(options.method||'GET').toUpperCase();
+ if(path.startsWith('/api/stations')){const parts=path.split('/').filter(Boolean),id=Number(parts[2]);if(method==='GET'){if(parts.length===2)return {stations:await currentStations(),storage:'this-browser'};return station(id);}
+  if(method==='PUT'&&parts.length===3){const old=await station(id),body=await jsonBody(options);const record={id,displayName:String(body.displayName||'').trim().slice(0,250),notes:String(body.notes||'').trim().slice(0,6000),updatedAt:new Date().toISOString(),revision:(old.revision||0)+1};if(!record.displayName)throw Error('กรุณาระบุชื่อสถานที่');await put('master',record);return station(id);}
+  if(method==='POST'&&parts[3]==='photos'){const form=options.body,file=form?.get('file');if(!(file instanceof File))throw Error('ไม่พบไฟล์รูปภาพ');if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>10*1024*1024)throw Error('รองรับ JPEG / PNG / WebP ไม่เกิน 10 MB ต่อรูป');const record={id:crypto.randomUUID(),stationId:id,filename:file.name,caption:'',mime:file.type,blob:file,createdAt:new Date().toISOString()};await put('photos',record);return station(id);}
+ }
+ if(path.startsWith('/api/photos/')){const id=path.split('/').pop(),record=await one('photos',id);if(!record)throw Error('ไม่พบรูปภาพ');if(method==='PATCH'){const body=await jsonBody(options);record.caption=String(body.caption||'').trim().slice(0,500);await put('photos',record);return {...record,url:URL.createObjectURL(record.blob)};}if(method==='DELETE'){await remove('photos',id);return {ok:true};}}
+ if(method!=='GET')throw Error('ไม่สามารถดำเนินการได้');const url=new URL(path,location.origin),key=url.pathname.split('/').pop();if(!layers[key])throw Error('ไม่พบชั้นข้อมูล');const params=url.searchParams,province=params.get('province'),offset=Number(params.get('offset')||0),q=new URLSearchParams({f:'geojson',where:'1=1',outFields:'*',outSR:'4326',returnGeometry:'true',resultRecordCount:'1000',resultOffset:String(offset),maxAllowableOffset:params.get('tolerance')||'0.001'});if(province&&province!=='all'&&['province','district','subdistrict'].includes(key))q.set('where',`PROV_NAM_T='${province.replaceAll("'","''")}'`);if(params.has('bbox')){const [xmin,ymin,xmax,ymax]=params.get('bbox').split(',').map(Number);q.set('geometry',JSON.stringify({xmin,ymin,xmax,ymax,spatialReference:{wkid:4326}}));q.set('geometryType','esriGeometryEnvelope');q.set('inSR','4326');q.set('spatialRel','esriSpatialRelIntersects');}const data=await read(source+layers[key]+'/query?'+q,options.signal);if(!Array.isArray(data.features))throw Error('รูปแบบชั้นข้อมูลไม่ถูกต้อง');return {...data,nextOffset:(data.exceededTransferLimit||data.properties?.exceededTransferLimit)?offset+data.features.length:null};
 }

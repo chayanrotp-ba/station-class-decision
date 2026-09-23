@@ -28,7 +28,7 @@ const http=require('node:http'), fs=require('node:fs/promises'), path=require('n
  const apiResults=await page.evaluate(async()=>{const {api}=await import('./pages-api.js');const results={};for(const k of ['district','subdistrict','major','minor']){const data=await api('/api/gis/'+k+'?province=เชียงราย&bbox=100.20,19.94,100.28,19.99&tolerance=0.001&offset=0');results[k]=data.features.length;}return results;});
  assert(apiResults.district>0);assert(apiResults.subdistrict>0);
  await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
- await page.goto(base+'master.html?station=40');assert.equal(await page.locator('#central').getAttribute('href'),'https://station-class-decision.chayanrot-ja.chatgpt.site/master.html?station=40');
+ await page.goto(new URL('master.html?station=40',base).href);assert.equal(await page.locator('#central').getAttribute('href'),'https://station-class-decision.chayanrot-ja.chatgpt.site/master.html?station=40');
  assert.deepEqual(errors,[]);console.log(JSON.stringify({passed:true,base,markers:85,provinceLabels:20,districtDefault:true,zoomControls:true,mask:77,apiResults,centralLinks:true,coordinateAccuracy:true,mobile:true,errors}));
  }finally{await browser.close();await new Promise(r=>server.close(r));}
 })().catch(e=>{console.error(e);process.exitCode=1;});

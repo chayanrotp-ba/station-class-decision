@@ -1,0 +1,12 @@
+{
+ "$schema":"node_modules/wrangler/config-schema.json",
+ "name":"station-class-decision",
+ "main":"dist/server/index.js",
+ "compatibility_date":"2026-08-06",
+ "compatibility_flags":["nodejs_compat"],
+ "assets":{"directory":"dist/client","binding":"ASSETS","run_worker_first":["/api/*"]},
+ "d1_databases":[{"binding":"DB","database_name":"station-master-local","database_id":"00000000-0000-4000-8000-000000000000","migrations_dir":"drizzle"}],
+ "r2_buckets":[{"binding":"BUCKET","bucket_name":"station-photos-local"}],
+ "observability":{"enabled":true,"head_sampling_rate":1}
+}
+

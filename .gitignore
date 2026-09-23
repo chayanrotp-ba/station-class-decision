@@ -5,3 +5,8 @@ analysis/qa-*.png
 *.zip
 *.tar.gz
 node_modules/
+.wrangler/
+.local-data/
+.test-data/
+.test-data-*/
+worker-configuration.d.ts

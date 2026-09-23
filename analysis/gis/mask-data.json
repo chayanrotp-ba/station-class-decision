@@ -1,0 +1,254 @@
+{
+  "layers": [
+    {
+      "id": 0,
+      "blendMode": "multiply",
+      "layerDefinition": {
+        "drawingInfo": {
+          "renderer": {
+            "type": "simple",
+            "symbol": {
+              "type": "CIMSymbolReference",
+              "symbol": {
+                "type": "CIMPolygonSymbol",
+                "symbolLayers": [
+                  {
+                    "type": "CIMSolidFill",
+                    "enable": true,
+                    "color": [
+                      130,
+                      130,
+                      130,
+                      255
+                    ]
+                  }
+                ],
+                "angleAlignment": "Map"
+              }
+            }
+          },
+          "scaleSymbols": true
+        }
+      },
+      "disablePopup": false,
+      "popupInfo": {
+        "title": "{expression/displayExp}",
+        "showLastEditInfo": false,
+        "mediaInfos": [],
+        "popupElements": [
+          {
+            "fieldInfos": [
+              {
+                "fieldName": "objectid",
+                "isEditable": false,
+                "format": {
+                  "places": 0,
+                  "digitSeparator": false
+                },
+                "visible": true,
+                "label": "OBJECTID"
+              },
+              {
+                "fieldName": "prov_code",
+                "isEditable": true,
+                "visible": true,
+                "label": "รหัสจังหวัด"
+              },
+              {
+                "fieldName": "prov_nam_t",
+                "isEditable": true,
+                "visible": true,
+                "label": "ชื่อจังหวัด"
+              },
+              {
+                "fieldName": "prov_nam_e",
+                "isEditable": true,
+                "visible": true,
+                "label": "ชื่อจังหวัดภาษาอังกฤษ"
+              },
+              {
+                "fieldName": "region_6",
+                "isEditable": true,
+                "visible": true,
+                "label": "ภูมิภาค 6 ภาค"
+              },
+              {
+                "fieldName": "region_4",
+                "isEditable": true,
+                "visible": true,
+                "label": "ภูมิภาค 4 ภาค"
+              },
+              {
+                "fieldName": "region_tmd",
+                "isEditable": true,
+                "visible": true,
+                "label": "ภูมิภาคทางอุตุนิยมวิทยา"
+              },
+              {
+                "fieldName": "unith",
+                "isEditable": true,
+                "visible": true,
+                "label": "รหัส ปภ. ศูนย์เขต"
+              },
+              {
+                "fieldName": "uniths",
+                "isEditable": true,
+                "visible": true,
+                "label": "ปภ. ศูนย์เขต"
+              },
+              {
+                "fieldName": "centroid_x",
+                "isEditable": true,
+                "format": {
+                  "places": 6,
+                  "digitSeparator": false
+                },
+                "visible": true,
+                "label": "Centroid_x"
+              },
+              {
+                "fieldName": "centroid_y",
+                "isEditable": true,
+                "format": {
+                  "places": 6,
+                  "digitSeparator": false
+                },
+                "visible": true,
+                "label": "Centroid_y"
+              },
+              {
+                "fieldName": "thai",
+                "isEditable": true,
+                "format": {
+                  "places": 0,
+                  "digitSeparator": false
+                },
+                "visible": true,
+                "label": "thai"
+              },
+              {
+                "fieldName": "SHAPE__Length",
+                "visible": true,
+                "label": "SHAPE__Length"
+              },
+              {
+                "fieldName": "SHAPE__Area",
+                "visible": true,
+                "label": "SHAPE__Area"
+              }
+            ],
+            "type": "fields"
+          }
+        ],
+        "fieldInfos": [
+          {
+            "fieldName": "objectid",
+            "isEditable": false,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            },
+            "visible": true,
+            "label": "OBJECTID"
+          },
+          {
+            "fieldName": "prov_code",
+            "isEditable": true,
+            "visible": true,
+            "label": "รหัสจังหวัด"
+          },
+          {
+            "fieldName": "prov_nam_t",
+            "isEditable": true,
+            "visible": true,
+            "label": "ชื่อจังหวัด"
+          },
+          {
+            "fieldName": "prov_nam_e",
+            "isEditable": true,
+            "visible": true,
+            "label": "ชื่อจังหวัดภาษาอังกฤษ"
+          },
+          {
+            "fieldName": "region_6",
+            "isEditable": true,
+            "visible": true,
+            "label": "ภูมิภาค 6 ภาค"
+          },
+          {
+            "fieldName": "region_4",
+            "isEditable": true,
+            "visible": true,
+            "label": "ภูมิภาค 4 ภาค"
+          },
+          {
+            "fieldName": "region_tmd",
+            "isEditable": true,
+            "visible": true,
+            "label": "ภูมิภาคทางอุตุนิยมวิทยา"
+          },
+          {
+            "fieldName": "unith",
+            "isEditable": true,
+            "visible": true,
+            "label": "รหัส ปภ. ศูนย์เขต"
+          },
+          {
+            "fieldName": "uniths",
+            "isEditable": true,
+            "visible": true,
+            "label": "ปภ. ศูนย์เขต"
+          },
+          {
+            "fieldName": "centroid_x",
+            "isEditable": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            },
+            "visible": true,
+            "label": "Centroid_x"
+          },
+          {
+            "fieldName": "centroid_y",
+            "isEditable": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            },
+            "visible": true,
+            "label": "Centroid_y"
+          },
+          {
+            "fieldName": "thai",
+            "isEditable": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            },
+            "visible": true,
+            "label": "thai"
+          },
+          {
+            "fieldName": "SHAPE__Length",
+            "visible": true,
+            "label": "SHAPE__Length"
+          },
+          {
+            "fieldName": "SHAPE__Area",
+            "visible": true,
+            "label": "SHAPE__Area"
+          }
+        ],
+        "expressionInfos": [
+          {
+            "title": "Display Expression",
+            "name": "displayExp",
+            "returnType": "string",
+            "expression": "$feature.prov_code"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "currentVersion": 11.1,
+  "cimVersion": "3.1.0",
+  "id": 0,
+  "name": "Hydro_MajorStream",
+  "type": "Feature Layer",
+  "parentLayer": null,
+  "defaultVisibility": true,
+  "minScale": 0,
+  "maxScale": 0,
+  "canScaleSymbols": false,
+  "geometryType": "esriGeometryPolyline",
+  "description": "",
+  "copyrightText": "",
+  "editFieldsInfo": null,
+  "ownershipBasedAccessControlForFeatures": null,
+  "syncCanReturnChanges": true,
+  "relationships": [],
+  "isDataVersioned": false,
+  "isDataArchived": true,
+  "infoInEstimates": [
+    "extent",
+    "count"
+  ],
+  "isDataBranchVersioned": false,
+  "isDataReplicaTracked": false,
+  "isCoGoEnabled": false,
+  "supportsRollbackOnFailureParameter": true,
+  "archivingInfo": {
+    "supportsQueryWithHistoricMoment": true,
+    "startArchivingMoment": 1696321441000
+  },
+  "supportsStatistics": true,
+  "supportsExceedsLimitStatistics": true,
+  "supportsAdvancedQueries": true,
+  "supportsValidateSQL": true,
+  "supportsCoordinatesQuantization": true,
+  "supportsQuantizationEditMode": true,
+  "supportsCalculate": true,
+  "supportsASyncCalculate": true,
+  "supportsDatumTransformation": true,
+  "advancedQueryCapabilities": {
+    "supportsPagination": true,
+    "supportsTrueCurve": true,
+    "supportsQueryWithDistance": true,
+    "supportsReturningQueryExtent": true,
+    "supportsStatistics": true,
+    "supportsPercentileStatistics": true,
+    "supportsHavingClause": true,
+    "supportsOrderBy": true,
+    "supportsDistinct": true,
+    "supportsCountDistinct": true,
+    "supportsQueryWithResultType": true,
+    "supportsReturningGeometryCentroid": false,
+    "supportsSqlExpression": true,
+    "supportsQueryWithDatumTransformation": true,
+    "supportsLod": false,
+    "supportsQueryWithLodSR": false,
+    "supportsQueryAnalytic": true
+  },
+  "advancedQueryAnalyticCapabilities": {
+    "supportsLinearRegression": true,
+    "supportsAsync": false,
+    "supportsPercentileAnalytic": true
+  },
+  "advancedEditingCapabilities": {
+    "supportedSqlFormatsInCalculate": [
+      "standard"
+    ],
+    "supportsAsyncApplyEdits": true,
+    "supportsApplyEditsbyUploadID": true,
+    "supportedApplyEditsUploadIDFormats": "JSON"
+  },
+  "hasGeometryProperties": true,
+  "geometryProperties": {
+    "shapeLengthFieldName": "Shape__Length",
+    "units": "esriDecimalDegrees"
+  },
+  "hasMetadata": true,
+  "extent": {
+    "xmin": 97.32490581475162,
+    "ymin": 5.632833285327877,
+    "xmax": 105.74999786421012,
+    "ymax": 20.499999993305096,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326,
+      "xyTolerance": 8.983152841195215e-09,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -400,
+      "falseY": -400,
+      "xyUnits": 999999999.9999999,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    }
+  },
+  "sourceSpatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326,
+    "xyTolerance": 8.983152841195215e-09,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -400,
+    "falseY": -400,
+    "xyUnits": 1111948722.222222,
+    "falseZ": 0,
+    "zUnits": 1,
+    "falseM": 0,
+    "mUnits": 1
+  },
+  "drawingInfo": {
+    "renderer": {
+      "type": "simple",
+      "symbol": {
+        "type": "esriSLS",
+        "style": "esriSLSSolid",
+        "color": [
+          126,
+          42,
+          150,
+          255
+        ],
+        "width": 1
+      }
+    },
+    "scaleSymbols": true,
+    "transparency": 0,
+    "labelingInfo": null
+  },
+  "hasM": false,
+  "hasZ": false,
+  "allowGeometryUpdates": true,
+  "allowTrueCurvesUpdates": true,
+  "onlyAllowTrueCurveUpdatesByTrueCurveClients": true,
+  "hasAttachments": false,
+  "supportsApplyEditsWithGlobalIds": true,
+  "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+  "objectIdField": "OBJECTID",
+  "globalIdField": "GlobalID",
+  "displayField": "str_name_t",
+  "typeIdField": "",
+  "subtypeField": "",
+  "fields": [
+    {
+      "name": "hy_use",
+      "type": "esriFieldTypeInteger",
+      "alias": "hy_use",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "hy_use"
+    },
+    {
+      "name": "hy_mriver",
+      "type": "esriFieldTypeString",
+      "alias": "hy_mriver",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 35,
+      "defaultValue": null,
+      "modelName": "hy_mriver"
+    },
+    {
+      "name": "str_id",
+      "type": "esriFieldTypeInteger",
+      "alias": "str_id",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "str_id"
+    },
+    {
+      "name": "str_type",
+      "type": "esriFieldTypeString",
+      "alias": "str_type",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 254,
+      "defaultValue": null,
+      "modelName": "str_type"
+    },
+    {
+      "name": "str_name_t",
+      "type": "esriFieldTypeString",
+      "alias": "str_name_t",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 254,
+      "defaultValue": null,
+      "modelName": "str_name_t"
+    },
+    {
+      "name": "str_name_e",
+      "type": "esriFieldTypeString",
+      "alias": "str_name_e",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 254,
+      "defaultValue": null,
+      "modelName": "str_name_e"
+    },
+    {
+      "name": "mod_date",
+      "type": "esriFieldTypeDate",
+      "alias": "mod_date",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 8,
+      "defaultValue": null,
+      "modelName": "mod_date"
+    },
+    {
+      "name": "length",
+      "type": "esriFieldTypeDouble",
+      "alias": "length",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "length"
+    },
+    {
+      "name": "GlobalID",
+      "type": "esriFieldTypeGlobalID",
+      "alias": "GlobalID",
+      "domain": null,
+      "editable": false,
+      "nullable": false,
+      "length": 38,
+      "defaultValue": null,
+      "modelName": "GlobalID"
+    },
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null,
+      "editable": false,
+      "nullable": false,
+      "defaultValue": null,
+      "modelName": "OBJECTID"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "esriFieldTypeDouble",
+      "alias": "Shape.STLength()",
+      "domain": null,
+      "editable": false,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "Shape.STLength()"
+    }
+  ],
+  "geometryField": {
+    "name": "Shape",
+    "type": "esriFieldTypeGeometry",
+    "alias": "Shape",
+    "domain": null,
+    "editable": true,
+    "nullable": true,
+    "defaultValue": null,
+    "modelName": "Shape"
+  },
+  "indexes": [
+    {
+      "name": "UUID_297",
+      "fields": "GlobalID",
+      "isAscending": true,
+      "isUnique": true,
+      "description": ""
+    },
+    {
+      "name": "gdb_ct3_297",
+      "fields": "OBJECTID",
+      "isAscending": true,
+      "isUnique": false,
+      "description": ""
+    },
+    {
+      "name": "S228_idx",
+      "fields": "Shape",
+      "isAscending": true,
+      "isUnique": true,
+      "description": ""
+    }
+  ],
+  "datesInUnknownTimezone": false,
+  "dateFieldsTimeReference": {
+    "timeZone": "UTC",
+    "respectsDaylightSaving": false
+  },
+  "preferredTimeReference": null,
+  "types": [],
+  "templates": [
+    {
+      "name": "Hydro_MajorStream",
+      "description": "",
+      "prototype": {
+        "attributes": {
+          "length": null,
+          "hy_use": null,
+          "hy_mriver": null,
+          "str_id": null,
+          "str_type": null,
+          "str_name_t": null,
+          "str_name_e": null,
+          "mod_date": null
+        }
+      },
+      "drawingTool": "esriFeatureEditToolLine"
+    }
+  ],
+  "maxRecordCount": 2000,
+  "supportedQueryFormats": "JSON, geoJSON, PBF",
+  "supportedExportFormats": "sqlite,filegdb,shapefile,csv,geojson",
+  "capabilities": "Query,Extract,ChangeTracking",
+  "useStandardizedQueries": true,
+  "supportedSpatialRelationships": [
+    "esriSpatialRelIntersects",
+    "esriSpatialRelContains",
+    "esriSpatialRelCrosses",
+    "esriSpatialRelEnvelopeIntersects",
+    "esriSpatialRelIndexIntersects",
+    "esriSpatialRelOverlaps",
+    "esriSpatialRelTouches",
+    "esriSpatialRelWithin",
+    "esriSpatialRelRelation"
+  ],
+  "standardMaxRecordCount": 8000,
+  "tileMaxRecordCount": 4000,
+  "standardMaxRecordCountNoGeometry": 32000,
+  "maxRecordCountFactor": 1,
+  "serviceItemId": "1ce9caeab60c4eda872f4ecba04ee80e"
+}

@@ -1,0 +1,431 @@
+{
+  "currentVersion": 11.1,
+  "cimVersion": "3.1.0",
+  "id": 1,
+  "name": "DPMGISADMIN.DPM_TH_Province",
+  "type": "Feature Layer",
+  "parentLayer": {
+    "id": 0,
+    "name": "DB"
+  },
+  "defaultVisibility": true,
+  "minScale": 5000000,
+  "maxScale": 80000,
+  "canScaleSymbols": false,
+  "geometryType": "esriGeometryPolygon",
+  "description": "",
+  "copyrightText": "",
+  "editFieldsInfo": null,
+  "ownershipBasedAccessControlForFeatures": null,
+  "syncCanReturnChanges": false,
+  "relationships": [],
+  "isDataVersioned": false,
+  "isDataArchived": false,
+  "infoInEstimates": [
+    "extent",
+    "count"
+  ],
+  "isDataBranchVersioned": false,
+  "isDataReplicaTracked": false,
+  "isCoGoEnabled": false,
+  "supportsRollbackOnFailureParameter": true,
+  "archivingInfo": {
+    "supportsQueryWithHistoricMoment": false,
+    "startArchivingMoment": -1
+  },
+  "supportsStatistics": true,
+  "supportsExceedsLimitStatistics": true,
+  "supportsAdvancedQueries": true,
+  "supportsValidateSQL": true,
+  "supportsCoordinatesQuantization": true,
+  "supportsQuantizationEditMode": true,
+  "supportsCalculate": true,
+  "supportsASyncCalculate": true,
+  "supportsDatumTransformation": true,
+  "advancedQueryCapabilities": {
+    "supportsPagination": true,
+    "supportsTrueCurve": true,
+    "supportsQueryWithDistance": true,
+    "supportsReturningQueryExtent": true,
+    "supportsStatistics": true,
+    "supportsPercentileStatistics": true,
+    "supportsHavingClause": true,
+    "supportsOrderBy": true,
+    "supportsDistinct": true,
+    "supportsCountDistinct": true,
+    "supportsQueryWithResultType": true,
+    "supportsReturningGeometryCentroid": true,
+    "supportsSqlExpression": true,
+    "supportsQueryWithDatumTransformation": true,
+    "supportsLod": false,
+    "supportsQueryWithLodSR": false,
+    "supportsQueryAnalytic": true
+  },
+  "advancedQueryAnalyticCapabilities": {
+    "supportsLinearRegression": true,
+    "supportsAsync": false,
+    "supportsPercentileAnalytic": true
+  },
+  "advancedEditingCapabilities": {
+    "supportedSqlFormatsInCalculate": [
+      "standard"
+    ],
+    "supportsAsyncApplyEdits": true,
+    "supportsApplyEditsbyUploadID": true,
+    "supportedApplyEditsUploadIDFormats": "JSON"
+  },
+  "hasGeometryProperties": true,
+  "geometryProperties": {
+    "shapeAreaFieldName": "Shape__Area",
+    "shapeLengthFieldName": "Shape__Length",
+    "units": "esriDecimalDegrees"
+  },
+  "hasMetadata": true,
+  "extent": {
+    "xmin": 97.34369928929084,
+    "ymin": 5.6127376428279945,
+    "xmax": 105.63702493255465,
+    "ymax": 20.464925516199685,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326,
+      "xyTolerance": 8.983152841195215e-09,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -400,
+      "falseY": -400,
+      "xyUnits": 999999999.9999999,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    }
+  },
+  "sourceSpatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326,
+    "xyTolerance": 8.983152841195215e-09,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -400,
+    "falseY": -400,
+    "xyUnits": 1111948722.222222,
+    "falseZ": 0,
+    "zUnits": 1,
+    "falseM": 0,
+    "mUnits": 1
+  },
+  "drawingInfo": {
+    "renderer": {
+      "type": "simple",
+      "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "width": 1.2
+        }
+      }
+    },
+    "scaleSymbols": true,
+    "transparency": 0,
+    "labelingInfo": [
+      {
+        "labelExpressionInfo": {
+          "expression": "$feature.PROV_NAM_T",
+          "title": "Custom"
+        },
+        "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+        "multiPart": "labelLargest",
+        "allowOverrun": true,
+        "deconflictionStrategy": "static",
+        "repeatLabel": false,
+        "stackLabel": true,
+        "stackAlignment": "textSymbol",
+        "removeDuplicates": "none",
+        "stackRowLength": 24,
+        "useCodedValues": true,
+        "maxScale": 0,
+        "minScale": 3371364.62137,
+        "name": "Label Class 1",
+        "priority": 0,
+        "symbol": {
+          "type": "esriTS",
+          "color": [
+            46,
+            45,
+            45,
+            255
+          ],
+          "backgroundColor": null,
+          "borderLineColor": null,
+          "borderLineSize": null,
+          "verticalAlignment": "baseline",
+          "horizontalAlignment": "center",
+          "rightToLeft": false,
+          "angle": 0,
+          "xoffset": 0,
+          "yoffset": 0,
+          "kerning": true,
+          "haloColor": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "haloSize": 0.5249999999999999,
+          "font": {
+            "family": "AngsanaUPC",
+            "size": 14,
+            "style": "normal",
+            "weight": "bold",
+            "decoration": "none"
+          }
+        }
+      }
+    ]
+  },
+  "hasM": false,
+  "hasZ": false,
+  "allowGeometryUpdates": true,
+  "allowTrueCurvesUpdates": true,
+  "onlyAllowTrueCurveUpdatesByTrueCurveClients": true,
+  "hasAttachments": false,
+  "supportsApplyEditsWithGlobalIds": false,
+  "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+  "objectIdField": "OBJECTID",
+  "globalIdField": "",
+  "displayField": "PROV_CODE",
+  "typeIdField": "",
+  "subtypeField": "",
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null,
+      "editable": false,
+      "nullable": false,
+      "defaultValue": null,
+      "modelName": "OBJECTID"
+    },
+    {
+      "name": "PROV_CODE",
+      "type": "esriFieldTypeString",
+      "alias": "รหัสจังหวัด",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 254,
+      "defaultValue": null,
+      "modelName": "provinceid"
+    },
+    {
+      "name": "PROV_NAM_T",
+      "type": "esriFieldTypeString",
+      "alias": "ชื่อจังหวัด",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 254,
+      "defaultValue": null,
+      "modelName": "provinceth"
+    },
+    {
+      "name": "PROV_NAM_E",
+      "type": "esriFieldTypeString",
+      "alias": "ชื่อจังหวัดภาษาอังกฤษ",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 254,
+      "defaultValue": null,
+      "modelName": "provinceen"
+    },
+    {
+      "name": "REGION_6",
+      "type": "esriFieldTypeString",
+      "alias": "ภูมิภาค 6 ภาค",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 254,
+      "defaultValue": null,
+      "modelName": "formalregion"
+    },
+    {
+      "name": "REGION_4",
+      "type": "esriFieldTypeString",
+      "alias": "ภูมิภาค 4 ภาค",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 254,
+      "defaultValue": null,
+      "modelName": "f4region"
+    },
+    {
+      "name": "REGION_TMD",
+      "type": "esriFieldTypeString",
+      "alias": "ภูมิภาคทางอุตุนิยมวิทยา",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 255,
+      "defaultValue": null,
+      "modelName": "tmdregion"
+    },
+    {
+      "name": "UNITH",
+      "type": "esriFieldTypeString",
+      "alias": "รหัส ปภ. ศูนย์เขต",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 10,
+      "defaultValue": null,
+      "modelName": "units"
+    },
+    {
+      "name": "UNITHS",
+      "type": "esriFieldTypeString",
+      "alias": "ปภ. ศูนย์เขต",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 255,
+      "defaultValue": null,
+      "modelName": "unitsth"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "esriFieldTypeDouble",
+      "alias": "Shape.STArea()",
+      "domain": null,
+      "editable": false,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "Shape.STArea()"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "esriFieldTypeDouble",
+      "alias": "Shape.STLength()",
+      "domain": null,
+      "editable": false,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "Shape.STLength()"
+    },
+    {
+      "name": "Centroid_x",
+      "type": "esriFieldTypeString",
+      "alias": "Centroid_x",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 255,
+      "defaultValue": null,
+      "modelName": "Centroid_x"
+    },
+    {
+      "name": "Centroid_y",
+      "type": "esriFieldTypeString",
+      "alias": "Centroid_y",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 255,
+      "defaultValue": null,
+      "modelName": "Centroid_y"
+    }
+  ],
+  "geometryField": {
+    "name": "Shape",
+    "type": "esriFieldTypeGeometry",
+    "alias": "Shape",
+    "domain": null,
+    "editable": true,
+    "nullable": true,
+    "defaultValue": null,
+    "modelName": "Shape"
+  },
+  "indexes": [
+    {
+      "name": "R785_pk",
+      "fields": "OBJECTID",
+      "isAscending": true,
+      "isUnique": true,
+      "description": ""
+    },
+    {
+      "name": "S595_idx",
+      "fields": "Shape",
+      "isAscending": true,
+      "isUnique": true,
+      "description": ""
+    }
+  ],
+  "datesInUnknownTimezone": false,
+  "dateFieldsTimeReference": {
+    "timeZone": "UTC",
+    "respectsDaylightSaving": false
+  },
+  "preferredTimeReference": null,
+  "types": [],
+  "templates": [
+    {
+      "name": "DPMGISADMIN.DPM_TH_Province",
+      "description": "",
+      "prototype": {
+        "attributes": {
+          "Centroid_x": null,
+          "Centroid_y": null,
+          "PROV_CODE": null,
+          "PROV_NAM_T": null,
+          "PROV_NAM_E": null,
+          "REGION_6": null,
+          "REGION_4": null,
+          "REGION_TMD": null,
+          "UNITH": null,
+          "UNITHS": null
+        }
+      },
+      "drawingTool": "esriFeatureEditToolPolygon"
+    }
+  ],
+  "maxRecordCount": 2000,
+  "supportedQueryFormats": "JSON, geoJSON, PBF",
+  "supportedExportFormats": "sqlite,filegdb,shapefile,csv,geojson",
+  "capabilities": "Query,Extract",
+  "useStandardizedQueries": true,
+  "supportedSpatialRelationships": [
+    "esriSpatialRelIntersects",
+    "esriSpatialRelContains",
+    "esriSpatialRelCrosses",
+    "esriSpatialRelEnvelopeIntersects",
+    "esriSpatialRelIndexIntersects",
+    "esriSpatialRelOverlaps",
+    "esriSpatialRelTouches",
+    "esriSpatialRelWithin",
+    "esriSpatialRelRelation"
+  ],
+  "standardMaxRecordCount": 4000,
+  "tileMaxRecordCount": 4000,
+  "standardMaxRecordCountNoGeometry": 32000,
+  "maxRecordCountFactor": 1,
+  "serviceItemId": "b3bd4c8b0119405186a41ffceaa9eb1f"
+}

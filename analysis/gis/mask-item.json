@@ -1,0 +1,67 @@
+{
+  "id": "6972854493074d108fd7421c09a7ce3b",
+  "owner": "Meridian2",
+  "orgId": "0123456789ABCDEF",
+  "created": 1784860303532,
+  "modified": 1784860324869,
+  "guid": null,
+  "name": "Province_Gray",
+  "title": "Province_Gray",
+  "type": "Feature Service",
+  "typeKeywords": [
+    "ArcGIS",
+    "ArcGIS Server",
+    "Data",
+    "Feature Access",
+    "Feature Service",
+    "Metadata",
+    "providerSDS",
+    "Service",
+    "Hosted Service"
+  ],
+  "description": "",
+  "tags": [
+    ""
+  ],
+  "snippet": "",
+  "thumbnail": "thumbnail/thumbnail.png",
+  "documentation": null,
+  "extent": [
+    [
+      97.61954081400006,
+      6.289273281000021
+    ],
+    [
+      105.63702493300008,
+      19.735951174000036
+    ]
+  ],
+  "categories": [],
+  "spatialReference": "4326",
+  "accessInformation": "",
+  "licenseInfo": "",
+  "culture": "en-us",
+  "properties": null,
+  "advancedSettings": null,
+  "url": "https://gis-portal.disaster.go.th/arcgis/rest/services/Hosted/Province_Gray/FeatureServer",
+  "proxyFilter": null,
+  "access": "public",
+  "size": 3116454,
+  "subInfo": 0,
+  "appCategories": [],
+  "industries": [],
+  "languages": [],
+  "largeThumbnail": null,
+  "banner": null,
+  "screenshots": [],
+  "listed": false,
+  "commentsEnabled": false,
+  "numComments": 0,
+  "numRatings": 0,
+  "avgRating": 0,
+  "numViews": 1183,
+  "privateUrl": "https://gis-host.disaster.go.th:6443/arcgis/rest/services/Hosted/Province_Gray/FeatureServer",
+  "scoreCompleteness": 33,
+  "groupDesignations": null,
+  "lastViewed": -1
+}

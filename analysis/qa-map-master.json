@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "markers": 85,
+  "coordinateDifferences": 10,
+  "photos": 2,
+  "reloadPersistence": true,
+  "carousel": true,
+  "originalCoordinatesPreserved": true,
+  "mobile": true,
+  "errors": []
+}

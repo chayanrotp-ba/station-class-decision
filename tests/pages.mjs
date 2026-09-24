@@ -18,6 +18,7 @@ assert(!html.includes('ไม่ซิงก์มายังหน้านี
 assert(html.includes('text-editor.js'));
 assert(html.includes('id="filter-b-cutoff"'));
 assert(!html.includes('<option value="selected">A+B ตามเกณฑ์ที่เลือก</option>'));
+for (const id of ['c-filter-province','c-filter-primary','c-filter-secondary','c-filter-zone']) assert(html.includes(`id="${id}"`));
 const map = await fs.readFile(root+'/map.js','utf8');
 assert(map.includes('href="master.html?station='));
 assert(map.includes('คะแนนช่องว่างโครงข่าย (Network Gap)'));

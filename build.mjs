@@ -9,11 +9,11 @@ template=template.replace('</head>','<link rel="stylesheet" href="vendor/leaflet
 template=template.replace('<a href="#overview">ภาพรวม</a>','<a href="#overview">ภาพรวม</a><a href="#map">แผนที่</a>');
 template=template.replace('<a href="#sources">แหล่งข้อมูล</a>','<a href="#sources">แหล่งข้อมูล</a><a href="master.html">จัดการ Master ↗</a>');
 template=template.replace('<section id="method"',await fs.readFile('web/map-section.html','utf8')+'<section id="method"');
-template=template.replace('renderList();}\nfunction renderList()',"renderList();window.dispatchEvent(new CustomEvent('report-cutoff',{detail:cutoff}));}\nfunction renderList()");
+template=template.replace(/renderList\(\);\}\r?\nfunction renderList\(\)/,"renderList();window.dispatchEvent(new CustomEvent('report-cutoff',{detail:cutoff}));}\nfunction renderList()");
 template=template.replace('__REPORT_DATA__',JSON.stringify(data).replaceAll('</','<\\/'));
-template=template.replace('</body>','<script src="vendor/leaflet.js"></script><script type="module" src="map.js"></script></body>');
+template=template.replace('</body>','<script src="vendor/leaflet.js"></script><script type="module" src="map.js"></script><script type="module" src="text-editor.js"></script></body>');
 await fs.writeFile('dist/client/index.html',template);
-for(const file of ['master.html','master.js','map.js','common.js','app.css'])await fs.copyFile('web/'+file,'dist/client/'+file);
+for(const file of ['master.html','master.js','map.js','common.js','text-editor.js','app.css'])await fs.copyFile('web/'+file,'dist/client/'+file);
 await fs.cp('dist/sources','dist/client/sources',{recursive:true});
 await fs.mkdir('dist/client/vendor',{recursive:true});
 for(const f of ['leaflet.js','leaflet.css'])await fs.copyFile('node_modules/leaflet/dist/'+f,'dist/client/vendor/'+f);

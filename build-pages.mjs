@@ -5,7 +5,7 @@ const out = '.pages-dist';
 const central = 'https://station-class-decision.chayanrot-ja.chatgpt.site/';
 await fs.mkdir(out,{recursive:true});
 // Explicit allowlist: never copy Worker, hosting metadata, D1/R2, or local data.
-for (const file of ['index.html','app.css','report.css','common.js','map.js','master.html','master.js','vendor','sources']) {
+for (const file of ['index.html','app.css','report.css','common.js','map.js','text-editor.js','master.html','master.js','vendor','sources']) {
   await fs.cp(path.join('dist/client',file),path.join(out,file),{recursive:true});
 }
 await fs.copyFile('analysis/master-data.json',out+'/stations.json');

@@ -14,3 +14,5 @@
 @media(min-width:701px){.map-layout{height:624px;min-height:0}.map-layers{max-height:624px;overflow:auto;min-height:0}.map-legend{margin-top:14px;padding-top:13px;gap:6px;line-height:1.45}.map-legend strong{margin-top:5px}.map-stage{height:624px;overflow:hidden}}
 
 .map-detail .score-calculation{margin:8px 0;padding:8px 9px;background:#edf5fb;border-left:3px solid var(--blue);border-radius:0 6px 6px 0;font-size:12px;line-height:1.55;color:var(--ink)}.map-detail .score-calculation small{color:var(--muted)}
+
+.master-storage{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:13px 16px;margin:-8px 0 18px;background:#edf8f6;border:1px solid #b9ddd7;border-radius:9px;font-size:13px}.storage-actions{display:flex;gap:8px;flex-wrap:wrap}.import-backup{cursor:pointer;display:inline-flex;align-items:center}

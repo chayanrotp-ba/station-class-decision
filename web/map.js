@@ -1,4 +1,4 @@
-import {api,escapeHTML as esc,mountGallery} from './common.js?v=20260924b';
+import {api,escapeHTML as esc,mountGallery} from './common.js?v=__BUILD_ID__';
 const L=window.L,el=id=>document.getElementById(id),base=JSON.parse(el('report-data').textContent).stations;
 let stations=base.map(s=>({...s,displayName:s.masterName||s.name,photoCount:null})),cutoff=40,selectedId=null,selectionToken=0,markers=new Map(),loadToken=0;
 const config=[{id:'province',name:'ขอบเขตจังหวัด + ชื่อจังหวัด',color:'#fff',min:0,checked:true},{id:'district',name:'ขอบเขตอำเภอ',color:'#fff',min:0,checked:true},{id:'subdistrict',name:'ขอบเขตตำบล',color:'#fff',min:10,checked:false},{id:'major',name:'เส้นน้ำหลัก',color:'#25caff',min:8,checked:true},{id:'minor',name:'เส้นน้ำรอง',color:'#90e5ff',min:10,checked:false},{id:'flow',name:'ทิศทางน้ำ (ลูกศรสีส้ม)',color:'#f36b21',min:10,checked:false},{id:'rainfall',name:'สถานีหน่วยงานอื่น (เขียว/แดง)',color:'#16c83d',min:8,checked:true},{id:'risk',name:'พื้นที่เสี่ยง ปภ. (แดง/ส้ม)',color:'#ef1b1b',min:5,checked:true}];

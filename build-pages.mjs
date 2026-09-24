@@ -11,7 +11,8 @@ for (const file of ['index.html','app.css','report.css','common.js','map.js','te
 await fs.copyFile('analysis/master-data.json',out+'/stations.json');
 await fs.copyFile('web/pages-api.js',out+'/pages-api.js');
 let common = await fs.readFile(out+'/common.js','utf8');
-common = common.replace(/export async function api[\s\S]*?\nexport function mountGallery/,"export {api} from './pages-api.js?v=20260924';\nexport function mountGallery");
+const viewer = common.match(/function showImage[\s\S]*?(?=\nexport function mountGallery)/)?.[0]||'';
+common = common.replace(/export async function api[\s\S]*?\nexport function mountGallery/,"export {api} from './pages-api.js?v=20260924b';\n"+viewer+"\nexport function mountGallery");
 await fs.writeFile(out+'/common.js',common);
 let map = await fs.readFile(out+'/map.js','utf8');
 map = map.replaceAll(central+'master.html?station=','master.html?station=');

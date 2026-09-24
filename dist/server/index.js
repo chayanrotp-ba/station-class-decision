@@ -3739,7 +3739,7 @@ function database(env) {
 // src/worker.js
 var MAX_IMAGE = 10 * 1024 * 1024;
 var BASE_URL = "https://gis-portal.disaster.go.th/arcgis/rest/services/";
-var GIS = { major: "04Hydro_MajorStream/FeatureServer/0", minor: "04Hydro_MinorStream/FeatureServer/0", province: "Map116/DPM_TH_Province_DSS/FeatureServer/1", district: "Map116/DPM_TH_Amphoe_DSS/FeatureServer/1", subdistrict: "Map116/DPM_TH_Tambon_DSS/FeatureServer/1", mask: "Hosted/Province_Gray/FeatureServer/0", rainfall: "Hosted/Rainfall_data_freq2/FeatureServer/0", risk: "Hosted/Tambon_DDPM_Prov_risk/FeatureServer/0" };
+var GIS = { major: "04Hydro_MajorStream/FeatureServer/0", minor: "04Hydro_MinorStream/FeatureServer/0", flow: "Map116/DPM_FLOW_DIRECTION_DSS/FeatureServer/0", province: "Map116/DPM_TH_Province_DSS/FeatureServer/1", district: "Map116/DPM_TH_Amphoe_DSS/FeatureServer/1", subdistrict: "Map116/DPM_TH_Tambon_DSS/FeatureServer/1", mask: "Hosted/Province_Gray/FeatureServer/0", rainfall: "Hosted/Rainfall_data_freq2/FeatureServer/0", risk: "Hosted/Tambon_DDPM_Prov_risk/FeatureServer/0" };
 var json = (v, status = 200) => Response.json(v, { status, headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" } });
 function fail(msg, status = 400) {
   const e = new Error(msg);
@@ -3804,7 +3804,7 @@ function imageType(b) {
 async function gis(request, key) {
   if (!GIS[key]) fail("\u0E44\u0E21\u0E48\u0E1E\u0E1A\u0E0A\u0E31\u0E49\u0E19\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25", 404);
   const url = new URL(request.url), q = new URLSearchParams({ f: "geojson", where: "1=1", outFields: "*", outSR: "4326", returnGeometry: "true", resultRecordCount: "1000", resultOffset: "0" });
-  const prov = url.searchParams.get("province"), provinceList = (url.searchParams.get("provinces") || "").split("|").filter(Boolean), scoped = ["province", "district", "subdistrict", "risk", "rainfall"];
+  const prov = url.searchParams.get("province"), provinceList = (url.searchParams.get("provinces") || "").split("|").filter(Boolean), scoped = ["province", "district", "subdistrict", "flow", "risk", "rainfall"];
   if (prov && prov !== "all" && !master_data_default.stations.some((s) => s.province === prov)) fail("\u0E08\u0E31\u0E07\u0E2B\u0E27\u0E31\u0E14\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07");
   if (scoped.includes(key)) {
     const names = prov && prov !== "all" ? [prov] : provinceList;

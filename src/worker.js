@@ -2,7 +2,7 @@ import BASE from '../analysis/master-data.json';
 import {database} from './db.js';
 const MAX_IMAGE=10*1024*1024;
 const BASE_URL='https://gis-portal.disaster.go.th/arcgis/rest/services/';
-const GIS={major:'04Hydro_MajorStream/FeatureServer/0',minor:'04Hydro_MinorStream/FeatureServer/0',province:'Map116/DPM_TH_Province_DSS/FeatureServer/1',district:'Map116/DPM_TH_Amphoe_DSS/FeatureServer/1',subdistrict:'Map116/DPM_TH_Tambon_DSS/FeatureServer/1',mask:'Hosted/Province_Gray/FeatureServer/0',rainfall:'Hosted/Rainfall_data_freq2/FeatureServer/0'};
+const GIS={major:'04Hydro_MajorStream/FeatureServer/0',minor:'04Hydro_MinorStream/FeatureServer/0',province:'Map116/DPM_TH_Province_DSS/FeatureServer/1',district:'Map116/DPM_TH_Amphoe_DSS/FeatureServer/1',subdistrict:'Map116/DPM_TH_Tambon_DSS/FeatureServer/1',mask:'Hosted/Province_Gray/FeatureServer/0',rainfall:'Hosted/Rainfall_data_freq2/FeatureServer/0',risk:'Hosted/Tambon_DDPM_Prov_risk/FeatureServer/0'};
 const json=(v,status=200)=>Response.json(v,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 function fail(msg,status=400){const e=new Error(msg);e.status=status;throw e;}
 function baseStation(id){const r=BASE.stations.find(r=>r.id===Number(id));if(!r)fail('ไม่พบจุดติดตั้ง',404);return r;}
@@ -14,7 +14,7 @@ function imageType(b){if(b[0]===255&&b[1]===216&&b[2]===255)return 'image/jpeg';
 async function gis(request,key){
  if(!GIS[key])fail('ไม่พบชั้นข้อมูล',404);
  const url=new URL(request.url),q=new URLSearchParams({f:'geojson',where:'1=1',outFields:'*',outSR:'4326',returnGeometry:'true',resultRecordCount:'1000',resultOffset:'0'});
- const prov=url.searchParams.get('province');if(prov&&prov!=='all'){if(!BASE.stations.some(s=>s.province===prov))fail('จังหวัดไม่ถูกต้อง');if(['province','district','subdistrict'].includes(key))q.set('where',`PROV_NAM_T='${prov.replace(/'/g,"''")}'`);}
+ const prov=url.searchParams.get('province');if(prov&&prov!=='all'){if(!BASE.stations.some(s=>s.province===prov))fail('จังหวัดไม่ถูกต้อง');if(['province','district','subdistrict','risk'].includes(key))q.set('where',`PROV_NAM_T='${prov.replace(/'/g,"''")}'`);}
  const bbox=url.searchParams.get('bbox');if(bbox){const b=bbox.split(',').map(Number);if(b.length!==4||!b.every(Number.isFinite)||b[0]<-180||b[2]>180||b[1]<-90||b[3]>90||b[0]>=b[2]||b[1]>=b[3])fail('ขอบเขตไม่ถูกต้อง');q.set('geometry',JSON.stringify({xmin:b[0],ymin:b[1],xmax:b[2],ymax:b[3],spatialReference:{wkid:4326}}));q.set('geometryType','esriGeometryEnvelope');q.set('inSR','4326');q.set('spatialRel','esriSpatialRelIntersects');}
  if(['major','minor'].includes(key)&&!bbox)fail('กรุณาระบุขอบเขตแผนที่');
  const offset=Number(url.searchParams.get('offset')||0);if(!Number.isInteger(offset)||offset<0||offset>20000)fail('ลำดับหน้าไม่ถูกต้อง');q.set('resultOffset',String(offset));

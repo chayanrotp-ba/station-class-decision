@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises';
 import {build} from 'esbuild';
-const buildId=JSON.parse(await fs.readFile('release.json','utf8')).id;
+const release=JSON.parse(await fs.readFile('release.json','utf8'));
+const buildId=release.version;
+const versionBadge=`<aside class="version-control" aria-label="Version Control"><strong>Version ${release.version}</strong><span>${release.channel}</span></aside>`;
 await fs.mkdir('dist/client',{recursive:true});await fs.mkdir('dist/server',{recursive:true});
 const data=JSON.parse(await fs.readFile('analysis/master-data.json','utf8'));
 let template=await fs.readFile('index.template.html','utf8');
@@ -13,13 +15,13 @@ template=template.replace('<section id="method"',await fs.readFile('web/map-sect
 template=template.replace(/renderList\(\);\}\r?\nfunction renderList\(\)/,"renderList();window.dispatchEvent(new CustomEvent('report-cutoff',{detail:cutoff}));}\nfunction renderList()");
 template=template.replace('__REPORT_DATA__',JSON.stringify(data).replaceAll('</','<\\/'));
 template=template.replaceAll('__BUILD_ID__',buildId);
-template=template.replace('</body>',`<script src="vendor/leaflet.js?v=${buildId}"></script><script type="module" src="map.js?v=${buildId}"></script><script type="module" src="text-editor.js?v=${buildId}"></script></body>`);
+template=template.replace('</body>',`${versionBadge}<script src="vendor/leaflet.js?v=${buildId}"></script><script type="module" src="map.js?v=${buildId}"></script><script type="module" src="text-editor.js?v=${buildId}"></script></body>`);
 await fs.writeFile('dist/client/index.html',template);
 for(const file of ['master.js','common.js','text-editor.js','app.css'])await fs.copyFile('web/'+file,'dist/client/'+file);
 let mapSource=await fs.readFile('web/map.js','utf8');
 await fs.writeFile('dist/client/map.js',mapSource.replaceAll('__BUILD_ID__',buildId));
 let master=await fs.readFile('web/master.html','utf8');
-master=master.replace('href="report.css"',`href="report.css?v=${buildId}"`).replace('href="app.css"',`href="app.css?v=${buildId}"`).replace(/master\.js\?v=[^"]+/,`master.js?v=${buildId}`);
+master=master.replace('href="report.css"',`href="report.css?v=${buildId}"`).replace('href="app.css"',`href="app.css?v=${buildId}"`).replace(/master\.js\?v=[^"]+/,`master.js?v=${buildId}`).replace('</body>',`${versionBadge}</body>`);
 await fs.writeFile('dist/client/master.html',master);
 await fs.cp('dist/sources','dist/client/sources',{recursive:true});
 await fs.mkdir('dist/client/vendor',{recursive:true});

@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import {build} from 'esbuild';
 const release=JSON.parse(await fs.readFile('release.json','utf8'));
 const buildId=release.version;
-const versionBadge=`<aside class="version-control" aria-label="Version Control"><strong>Version ${release.version}</strong><span>${release.channel}</span></aside>`;
+const versionBadge=`<aside class="version-control" aria-label="Version Control">v${release.version}</aside>`;
 await fs.mkdir('dist/client',{recursive:true});await fs.mkdir('dist/server',{recursive:true});
 const data=JSON.parse(await fs.readFile('analysis/master-data.json','utf8'));
 let template=await fs.readFile('index.template.html','utf8');

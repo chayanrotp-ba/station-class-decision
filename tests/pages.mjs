@@ -30,6 +30,9 @@ assert(map.includes('ปภ.ส่วนกลาง + ปภ.จังหวั
 assert(map.includes("['1','3'].includes(String(f.properties?.score_1))"));
 assert(map.includes('อัปเดตทุกวัน'));
 assert(html.includes('c-score-factors'));
+assert(html.includes('Score = 0.50(Network Gap) + 0.15(Elevation Difference) + 0.20(Slope) + 0.15(Local Relief)'));
+assert(html.includes('N · SLOPE_SCORE'));
+assert(html.includes('Q · ELEV_COMPLEMENTARITY_SCORE'));
 assert(html.includes('#b-cutoff-filter[hidden]'));
 const api = await fs.readFile(root+'/pages-api.js','utf8');
 assert(api.includes('indexedDB.open'));

@@ -1,6 +1,6 @@
 // Public Pages master: data and photos stay in this browser profile, with no sign-in.
 const source='https://gis-portal.disaster.go.th/arcgis/rest/services/';
-const layers={major:'04Hydro_MajorStream/FeatureServer/0',minor:'04Hydro_MinorStream/FeatureServer/0',province:'Map116/DPM_TH_Province_DSS/FeatureServer/1',district:'Map116/DPM_TH_Amphoe_DSS/FeatureServer/1',subdistrict:'Map116/DPM_TH_Tambon_DSS/FeatureServer/1',mask:'Hosted/Province_Gray/FeatureServer/0'};
+const layers={major:'04Hydro_MajorStream/FeatureServer/0',minor:'04Hydro_MinorStream/FeatureServer/0',province:'Map116/DPM_TH_Province_DSS/FeatureServer/1',district:'Map116/DPM_TH_Amphoe_DSS/FeatureServer/1',subdistrict:'Map116/DPM_TH_Tambon_DSS/FeatureServer/1',mask:'Hosted/Province_Gray/FeatureServer/0',rainfall:'Hosted/Rainfall_data_freq2/FeatureServer/0'};
 let stationsPromise,dbPromise;
 const openDb=()=>dbPromise??=new Promise((resolve,reject)=>{const req=indexedDB.open('station-class-master',1);req.onupgradeneeded=()=>{const db=req.result;db.createObjectStore('master',{keyPath:'id'});db.createObjectStore('photos',{keyPath:'id'});};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
 async function store(name,mode,run){const db=await openDb();return new Promise((resolve,reject)=>{const tx=db.transaction(name,mode),result=run(tx.objectStore(name));tx.oncomplete=()=>resolve(result);tx.onerror=()=>reject(tx.error);});}

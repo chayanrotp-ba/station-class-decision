@@ -2,7 +2,7 @@ import BASE from '../analysis/master-data.json';
 import {database} from './db.js';
 const MAX_IMAGE=10*1024*1024;
 const BASE_URL='https://gis-portal.disaster.go.th/arcgis/rest/services/';
-const GIS={major:'04Hydro_MajorStream/FeatureServer/0',minor:'04Hydro_MinorStream/FeatureServer/0',province:'Map116/DPM_TH_Province_DSS/FeatureServer/1',district:'Map116/DPM_TH_Amphoe_DSS/FeatureServer/1',subdistrict:'Map116/DPM_TH_Tambon_DSS/FeatureServer/1',mask:'Hosted/Province_Gray/FeatureServer/0'};
+const GIS={major:'04Hydro_MajorStream/FeatureServer/0',minor:'04Hydro_MinorStream/FeatureServer/0',province:'Map116/DPM_TH_Province_DSS/FeatureServer/1',district:'Map116/DPM_TH_Amphoe_DSS/FeatureServer/1',subdistrict:'Map116/DPM_TH_Tambon_DSS/FeatureServer/1',mask:'Hosted/Province_Gray/FeatureServer/0',rainfall:'Hosted/Rainfall_data_freq2/FeatureServer/0'};
 const json=(v,status=200)=>Response.json(v,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 function fail(msg,status=400){const e=new Error(msg);e.status=status;throw e;}
 function baseStation(id){const r=BASE.stations.find(r=>r.id===Number(id));if(!r)fail('ไม่พบจุดติดตั้ง',404);return r;}

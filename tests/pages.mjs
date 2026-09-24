@@ -27,6 +27,7 @@ assert(map.includes("id:'rainfall'"));
 assert(map.includes("id:'risk'"));
 assert(map.includes('Tambon_DDPM_Prov_risk/FeatureServer/0'));
 assert(map.includes('ปภ.ส่วนกลาง + ปภ.จังหวัดเห็นตรงกัน'));
+assert(map.includes("['1','3'].includes(String(f.properties?.score_1))"));
 assert(map.includes('อัปเดตทุกวัน'));
 assert(html.includes('c-score-factors'));
 assert(html.includes('#b-cutoff-filter[hidden]'));

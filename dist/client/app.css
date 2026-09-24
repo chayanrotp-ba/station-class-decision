@@ -12,3 +12,5 @@
 .rainfall-marker{filter:drop-shadow(0 1px 2px #071d4299)}
 
 @media(min-width:701px){.map-layout{height:624px;min-height:0}.map-layers{max-height:624px;overflow:auto;min-height:0}.map-legend{margin-top:14px;padding-top:13px;gap:6px;line-height:1.45}.map-legend strong{margin-top:5px}.map-stage{height:624px;overflow:hidden}}
+
+.map-detail .score-calculation{margin:8px 0;padding:8px 9px;background:#edf5fb;border-left:3px solid var(--blue);border-radius:0 6px 6px 0;font-size:12px;line-height:1.55;color:var(--ink)}.map-detail .score-calculation small{color:var(--muted)}
